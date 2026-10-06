@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="h-full bg-slate-900 text-slate-100">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apoie o Nosso Trabalho</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inter Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-bg {
+            background: radial-gradient(circle at top, rgba(34, 197, 94, 0.15) 0%, rgba(15, 23, 42, 1) 70%);
+        }
+        .card-glow {
+            box-shadow: 0 0 25px -5px rgba(34, 197, 94, 0.2);
+        }
+    </style>
+</head>
+<body class="font-sans antialiased min-h-full flex flex-col justify-between gradient-bg">
+
+    <div class="max-w-6xl mx-auto px-4 py-12 sm:px-6 lg:px-8 flex-grow w-full">
+        
+        <!-- Header / Hero Section -->
+        <header class="text-center max-w-3xl mx-auto mb-12">
+            <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-brand-500/10 text-brand-500 border border-brand-500/20 mb-4">
+                <i class="fa-solid fa-heart text-red-500 animate-pulse"></i> Comunidade & Apoio
+            </span>
+            <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-white mb-4">
+                Apoie o Nosso Trabalho
+            </h1>
+            <p class="text-lg text-slate-300 leading-relaxed">
+                Sua contribuição mensal mantém nosso aplicativo gratuito, livre de anúncios abusivos e em contante evolução. Escolha um plano de apoio que cabe no seu bolso!
+            </p>
+        </header>
+
+        <!-- Payment Method Selection Toggle -->
+        <div class="max-w-md mx-auto mb-10 bg-slate-800/80 p-1.5 rounded-2xl border border-slate-700/60 backdrop-blur flex text-sm font-medium">
+            <button id="toggle-pix" onclick="setPaymentMethod('pix')" class="flex-1 py-2.5 rounded-xl flex items-center justify-center gap-2 transition-all bg-brand-600 text-white shadow-lg">
+                <i class="fa-brands fa-pix text-lg"></i>
+                <span>Pix Recorrente</span>
+            </button>
+            <button id="toggle-card" onclick="setPaymentMethod('card')" class="flex-1 py-2.5 rounded-xl flex items-center justify-center gap-2 transition-all text-slate-400 hover:text-white">
+                <i class="fa-regular fa-credit-card"></i>
+                <span>Cartão de Crédito</span>
+            </button>
+        </div>
+
+        <!-- Support Tier Options Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+
+            <!-- Tier 1: R$ 2,00 -->
+            <div onclick="selectTier(2, 'Iniciante / Bronze', this)" class="tier-card relative bg-slate-800/50 hover:bg-slate-800 border-2 border-slate-700/60 rounded-2xl p-6 cursor-pointer transition-all duration-300 hover:-translate-y-1 group">
+                <div class="absolute top-4 right-4 check-icon hidden text-brand-500 text-xl">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+                <div class="w-12 h-12 rounded-xl bg-amber-900/30 text-amber-500 border border-amber-500/20 flex items-center justify-center text-xl font-bold mb-4">
+                    <i class="fa-solid fa-seedling"></i>
+                </div>
+                <h3 class="text-lg font-bold text-white mb-1">Iniciante / Bronze</h3>
+                <p class="text-slate-400 text-sm mb-4">Um incentivo simbólico que faz toda a diferença.</p>
+                <div class="flex items-baseline">
+                    <span class="text-3xl font-extrabold text-white">R$ 2</span>
+                    <span class="text-slate-400 text-sm ml-1">/ mês</span>
+                </div>
+            </div>
+
+            <!-- Tier 2: R$ 5,00 -->
+            <div onclick="selectTier(5, 'Apoiador / Prata', this)" class="tier-card relative bg-slate-800/50 hover:bg-slate-800 border-2 border-slate-700/60 rounded-2xl p-6 cursor-pointer transition-all duration-300 hover:-translate-y-1 group">
+                <div class="absolute top-4 right-4 check-icon hidden text-brand-500 text-xl">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+                <div class="w-12 h-12 rounded-xl bg-slate-700/40 text-slate-300 border border-slate-500/20 flex items-center justify-center text-xl font-bold mb-4">
+                    <i class="fa-solid fa-mug-hot"></i>
+                </div>
+                <h3 class="text-lg font-bold text-white mb-1">Apoiador / Prata</h3>
+                <p class="text-slate-400 text-sm mb-4">Pague um café por mês para a nossa equipe!</p>
+                <div class="flex items-baseline">
+                    <span class="text-3xl font-extrabold text-white">R$ 5</span>
+                    <span class="text-slate-400 text-sm ml-1">/ mês</span>
+                </div>
+            </div>
+
+            <!-- Tier 3: R$ 10,00 (Popular) -->
+            <div onclick="selectTier(10, 'Entusiasta / Ouro', this)" class="tier-card relative bg-slate-800/80 hover:bg-slate-800 border-2 border-brand-500/50 rounded-2xl p-6 cursor-pointer transition-all duration-300 hover:-translate-y-1 group card-glow">
+                <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-600 text-white text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow">
+                    Mais Popular
+                </span>
+                <div class="absolute top-4 right-4 check-icon text-brand-500 text-xl">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+                <div class="w-12 h-12 rounded-xl bg-amber-500/20 text-amber-400 border border-amber-500/30 flex items-center justify-center text-xl font-bold mb-4">
+                    <i class="fa-solid fa-star"></i>
+                </div>
+                <h3 class="text-lg font-bold text-white mb-1">Entusiasta / Ouro</h3>
+                <p class="text-slate-400 text-sm mb-4">Ajuda constante para custos diretos de servidor.</p>
+                <div class="flex items-baseline">
+                    <span class="text-3xl font-extrabold text-white">R$ 10</span>
+                    <span class="text-slate-400 text-sm ml-1">/ mês</span>
+                </div>
+            </div>
+
+            <!-- Tier 4: R$ 25,00 -->
+            <div onclick="selectTier(25, 'Sustentador / Platina', this)" class="tier-card relative bg-slate-800/50 hover:bg-slate-800 border-2 border-slate-700/60 rounded-2xl p-6 cursor-pointer transition-all duration-300 hover:-translate-y-1 group">
+                <div class="absolute top-4 right-4 check-icon hidden text-brand-500 text-xl">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+                <div class="w-12 h-12 rounded-xl bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 flex items-center justify-center text-xl font-bold mb-4">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <h3 class="text-lg font-bold text-white mb-1">Sustentador / Platina</h3>
+                <p class="text-slate-400 text-sm mb-4">Contribui ativamente para o desenvolvimento contínuo.</p>
+                <div class="flex items-baseline">
+                    <span class="text-3xl font-extrabold text-white">R$ 25</span>
+                    <span class="text-slate-400 text-sm ml-1">/ mês</span>
+                </div>
+            </div>
+
+            <!-- Tier 5: R$ 50,00 -->
+            <div onclick="selectTier(50, 'Padrinho / Diamante', this)" class="tier-card relative bg-slate-800/50 hover:bg-slate-800 border-2 border-slate-700/60 rounded-2xl p-6 cursor-pointer transition-all duration-300 hover:-translate-y-1 group">
+                <div class="absolute top-4 right-4 check-icon hidden text-brand-500 text-xl">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+                <div class="w-12 h-12 rounded-xl bg-purple-500/20 text-purple-400 border border-purple-500/30 flex items-center justify-center text-xl font-bold mb-4">
+                    <i class="fa-solid fa-gem"></i>
+                </div>
+                <h3 class="text-lg font-bold text-white mb-1">Padrinho / Diamante</h3>
+                <p class="text-slate-400 text-sm mb-4">Apoio de alto impacto para novas funcionalidades.</p>
+                <div class="flex items-baseline">
+                    <span class="text-3xl font-extrabold text-white">R$ 50</span>
+                    <span class="text-slate-400 text-sm ml-1">/ mês</span>
+                </div>
+            </div>
+
+            <!-- Tier Custom: Outro Valor (>= R$ 100) -->
+            <div id="custom-tier-card" onclick="selectCustomTier(this)" class="tier-card relative bg-slate-800/50 hover:bg-slate-800 border-2 border-slate-700/60 rounded-2xl p-6 cursor-pointer transition-all duration-300 hover:-translate-y-1 group">
+                <div class="absolute top-4 right-4 check-icon hidden text-brand-500 text-xl">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+                <div class="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center justify-center text-xl font-bold mb-4">
+                    <i class="fa-solid fa-hand-holding-dollar"></i>
+                </div>
+                <h3 class="text-lg font-bold text-white mb-1">Outro Valor</h3>
+                <p class="text-slate-400 text-sm mb-2">Para apoiadores especiais (acima de R$ 100).</p>
+
+                <!-- Input area for custom amount -->
+                <div class="mt-3">
+                    <div class="relative rounded-xl shadow-sm">
+                        <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                            <span class="text-slate-400 font-bold text-sm">R$</span>
+                        </div>
+                        <input type="number" id="custom-amount-input" min="100" step="5" placeholder="100" value="100" oninput="handleCustomInput(this.value)" class="w-full pl-10 pr-16 py-2.5 bg-slate-900/90 border border-slate-700 rounded-xl text-white font-extrabold text-lg focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all">
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+                            <span class="text-slate-500 text-xs">/ mês</span>
+                        </div>
+                    </div>
+                    <!-- Custom Validation Error Message -->
+                    <p id="custom-validation-msg" class="text-xs text-rose-400 font-medium mt-1.5 hidden flex items-center gap-1">
+                        <i class="fa-solid fa-circle-exclamation"></i> Mínimo de R$ 100,00/mês
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Action Button -->
+        <div class="max-w-md mx-auto text-center">
+            <button id="btn-submit" onclick="openCheckoutModal()" class="w-full py-4 px-8 bg-brand-600 hover:bg-brand-500 text-white font-bold text-lg rounded-2xl shadow-xl hover:shadow-brand-500/20 transition-all flex items-center justify-center gap-3">
+                <span>Apoiar Agora</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+            <p class="text-slate-500 text-xs mt-3 flex items-center justify-center gap-1">
+                <i class="fa-solid fa-lock"></i> Pagamento seguro & cancelamento a qualquer momento
+            </p>
+        </div>
+
+    </div>
+
+    <!-- Checkout Summary Modal -->
+    <div id="checkout-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-slate-900 border border-slate-700 rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative transform transition-transform scale-95 duration-300" id="modal-card">
+            
+            <!-- Close Button -->
+            <button onclick="closeCheckoutModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white transition-colors text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <!-- Modal Header -->
+            <div class="text-center mb-6">
+                <div class="w-14 h-14 bg-brand-500/20 text-brand-500 rounded-2xl flex items-center justify-center mx-auto mb-3 text-2xl">
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-white">Resumo do Apoio</h3>
+                <p class="text-slate-400 text-sm mt-1">Confira os detalhes antes de prosseguir</p>
+            </div>
+
+            <!-- Summary Box -->
+            <div class="bg-slate-800/70 rounded-2xl p-4 border border-slate-700/60 space-y-3 mb-6 text-sm">
+                <div class="flex justify-between items-center pb-2 border-b border-slate-700/50">
+                    <span class="text-slate-400">Plano Selecionado:</span>
+                    <span id="modal-tier-name" class="font-semibold text-white">Entusiasta / Ouro</span>
+                </div>
+                <div class="flex justify-between items-center pb-2 border-b border-slate-700/50">
+                    <span class="text-slate-400">Valor Mensal:</span>
+                    <span id="modal-amount" class="font-extrabold text-brand-500 text-base">R$ 10,00</span>
+                </div>
+                <div class="flex justify-between items-center pb-2 border-b border-slate-700/50">
+                    <span class="text-slate-400">Forma de Pagamento:</span>
+                    <span id="modal-payment-method" class="font-medium text-white flex items-center gap-1.5">
+                        <i class="fa-brands fa-pix text-brand-500"></i> Pix Recorrente
+                    </span>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span class="text-slate-400">Próxima Cobrança:</span>
+                    <span id="modal-next-billing" class="font-medium text-slate-300">Daqui a 30 dias</span>
+                </div>
+            </div>
+
+            <!-- Confirm Button -->
+            <button onclick="simulatedCheckoutSuccess()" class="w-full py-3.5 px-6 bg-brand-600 hover:bg-brand-500 text-white font-bold rounded-xl shadow-lg transition-all flex items-center justify-center gap-2">
+                <span>Confirmar e Pagar</span>
+                <i class="fa-solid fa-check"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-6 border-t border-slate-800 text-center text-xs text-slate-500">
+        <p>&copy; 2026 Seu Aplicativo. Todos os direitos reservados. Termos e Privacidade.</p>
+    </footer>
+
+    <script>
+        // State management
+        let selectedTier = {
+            amount: 10,
+            name: 'Entusiasta / Ouro',
+            isCustom: false
+        };
+        let currentPaymentMethod = 'pix'; // 'pix' or 'card'
+
+        // Initialize pre-selected default card (R$ 10 tier)
+        document.addEventListener('DOMContentLoaded', () => {
+            const defaultCard = document.querySelectorAll('.tier-card')[2];
+            applyActiveStyles(defaultCard);
+        });
+
+        // Toggle payment method selection
+        function setPaymentMethod(method) {
+            currentPaymentMethod = method;
+            const btnPix = document.getElementById('toggle-pix');
+            const btnCard = document.getElementById('toggle-card');
+
+            if (method === 'pix') {
+                btnPix.className = "flex-1 py-2.5 rounded-xl flex items-center justify-center gap-2 transition-all bg-brand-600 text-white shadow-lg";
+                btnCard.className = "flex-1 py-2.5 rounded-xl flex items-center justify-center gap-2 transition-all text-slate-400 hover:text-white";
+            } else {
+                btnCard.className = "flex-1 py-2.5 rounded-xl flex items-center justify-center gap-2 transition-all bg-brand-600 text-white shadow-lg";
+                btnPix.className = "flex-1 py-2.5 rounded-xl flex items-center justify-center gap-2 transition-all text-slate-400 hover:text-white";
+            }
+        }
+
+        // Helper to remove active border styles from all cards
+        function clearAllCardSelections() {
+            document.querySelectorAll('.tier-card').forEach(card => {
+                card.classList.remove('border-brand-500', 'bg-slate-800', 'card-glow');
+                card.classList.add('border-slate-700/60', 'bg-slate-800/50');
+                const checkIcon = card.querySelector('.check-icon');
+                if (checkIcon) checkIcon.classList.add('hidden');
+            });
+        }
+
+        // Apply visual selection style to a specific card
+        function applyActiveStyles(cardElement) {
+            clearAllCardSelections();
+            cardElement.classList.remove('border-slate-700/60', 'bg-slate-800/50');
+            cardElement.classList.add('border-brand-500', 'bg-slate-800', 'card-glow');
+            const checkIcon = cardElement.querySelector('.check-icon');
+            if (checkIcon) checkIcon.classList.remove('hidden');
+        }
+
+        // Select a standard tier card
+        function selectTier(amount, name, element) {
+            selectedTier = {
+                amount: amount,
+                name: name,
+                isCustom: false
+            };
+            applyActiveStyles(element);
+            validateState();
+        }
+
+        // Select the custom tier card
+        function selectCustomTier(element) {
+            const inputVal = parseFloat(document.getElementById('custom-amount-input').value) || 0;
+            selectedTier = {
+                amount: inputVal,
+                name: 'Apoiador Especial / Outro Valor',
+                isCustom: true
+            };
+            applyActiveStyles(element);
+            validateState();
+        }
+
+        // Handle user typing in the custom amount field
+        function handleCustomInput(val) {
+            const numVal = parseFloat(val) || 0;
+            const customCard = document.getElementById('custom-tier-card');
+            
+            // Select custom card when user types in it
+            selectCustomTier(customCard);
+            selectedTier.amount = numVal;
+
+            validateState();
+        }
+
+        // Validate selected state (especially custom amount minimum requirement)
+        function validateState() {
+            const validationMsg = document.getElementById('custom-validation-msg');
+            const btnSubmit = document.getElementById('btn-submit');
+
+            if (selectedTier.isCustom && selectedTier.amount < 100) {
+                validationMsg.classList.remove('hidden');
+                btnSubmit.disabled = true;
+                btnSubmit.classList.add('opacity-50', 'cursor-not-allowed', 'hover:bg-brand-600');
+            } else {
+                validationMsg.classList.add('hidden');
+                btnSubmit.disabled = false;
+                btnSubmit.classList.remove('opacity-50', 'cursor-not-allowed', 'hover:bg-brand-600');
+            }
+        }
+
+        // Open checkout modal
+        function openCheckoutModal() {
+            if (selectedTier.isCustom && selectedTier.amount < 100) return;
+
+            document.getElementById('modal-tier-name').textContent = selectedTier.name;
+            document.getElementById('modal-amount').textContent = `R$ ${selectedTier.amount.toFixed(2).replace('.', ',')}`;
+            
+            const paymentText = currentPaymentMethod === 'pix' 
+                ? '<i class="fa-brands fa-pix text-brand-500"></i> Pix Recorrente'
+                : '<i class="fa-regular fa-credit-card text-brand-500"></i> Cartão de Crédito';
+            document.getElementById('modal-payment-method').innerHTML = paymentText;
+
+            const modal = document.getElementById('checkout-modal');
+            const modalContainer = document.getElementById('modal-card');
+            
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modalContainer.classList.remove('scale-95');
+                modalContainer.classList.add('scale-100');
+            }, 10);
+        }
+
+        // Close checkout modal
+        function closeCheckoutModal() {
+            const modal = document.getElementById('checkout-modal');
+            const modalContainer = document.getElementById('modal-card');
+
+            modal.classList.add('opacity-0');
+            modalContainer.classList.remove('scale-100');
+            modalContainer.classList.add('scale-95');
+
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // Simulated Checkout Completion
+        function simulatedCheckoutSuccess() {
+            alert(`Obrigado pelo apoio! Redirecionando para a plataforma de pagamento (${currentPaymentMethod.toUpperCase()})...`);
+            closeCheckoutModal();
+        }
+    </script>
+</body>
+</html>
